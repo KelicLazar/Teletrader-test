@@ -1,0 +1,138 @@
+@mixin button-styles($color: blue, $background: lightgray) {
+  color: $color;
+  background-color: $background;
+  border: none;
+  border-radius: 0;
+  padding: 0.5rem 1.6rem;
+  transition: all 0.3s;
+  font-weight: 700;
+  cursor: pointer;
+  &:hover,
+  &:active {
+    background-color: darken($background, 10%);
+  }
+}
+$primary-color: #46c8d4;
+$danger-color: #d44f48;
+
+.header {
+  button {
+    @include button-styles(white, $primary-color);
+  }
+  padding-top: 1rem;
+  border-bottom: 1px solid #46c8d4;
+  ul {
+    list-style: none;
+    height: 40px;
+
+    li {
+      a {
+        text-decoration: none;
+        color: #a39487;
+        font-weight: 600;
+
+        &.active {
+          color: #46c8d4;
+        }
+      }
+    }
+  }
+}
+
+.crypto-table {
+  padding: 1.5rem;
+  box-shadow: 2px 2px 12px 5px rgba(0, 0, 0, 0.081);
+  min-height: 125px;
+  .table-heading {
+    padding-bottom: 1rem;
+    span {
+      color: black;
+      font-weight: 700;
+    }
+  }
+
+  .crypto-pair-row {
+    padding: 0.4rem 0;
+
+    .positive {
+      color: #66cc66;
+    }
+    .negative {
+      color: #f9504a;
+    }
+    .pair-name {
+      font-weight: 700;
+      color: #46c8d4;
+      text-decoration: none;
+
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+    &:nth-of-type(odd) {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  @media only screen and (max-width: 575.5px) {
+    font-size: 0.5rem;
+    min-height: 40px;
+  }
+}
+
+.btn-add {
+  margin-top: 0.5rem;
+  @include button-styles(white, $primary-color);
+}
+.btn-remove {
+  margin-top: 0.5rem;
+  @include button-styles(white, $danger-color);
+}
+
+//LOADER STYLES
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  animation-fill-mode: both;
+  animation: bblFadInOut 0.9s infinite ease-in-out;
+}
+.loader {
+  color: #46c8d4;
+  font-size: 7px;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0) translateX(-50%);
+  animation-delay: -0.16s;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  padding: 0;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+
+@keyframes bblFadInOut {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
